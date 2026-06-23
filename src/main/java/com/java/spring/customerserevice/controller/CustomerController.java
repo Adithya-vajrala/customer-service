@@ -38,10 +38,11 @@ public class CustomerController {
                 ApiResponseDto.<LoginResponseDto>builder()
                         .success(true)
                         .code(HttpStatus.OK.value())
-                        .message("product is there")
+                        .message("Customer is there")
                         .data(service.login(loginRequestDto))
                         .build()
         );
     }
+
 
 }

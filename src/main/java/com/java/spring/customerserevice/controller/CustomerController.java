@@ -6,6 +6,7 @@ import com.java.spring.customerserevice.dto.response.ApiResponseDto;
 import com.java.spring.customerserevice.dto.response.LoginResponseDto;
 import com.java.spring.customerserevice.dto.response.SignupResponseDto;
 import com.java.spring.customerserevice.service.CustomerService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
@@ -22,7 +23,7 @@ public class CustomerController {
     private final CustomerService service;
     private final ModelMapper modelMapper;
     @PostMapping("/signup")
-    public ResponseEntity<ApiResponseDto<SignupResponseDto>> signup(@RequestBody SignupRequestDto signupRequestDto){
+    public ResponseEntity<ApiResponseDto<SignupResponseDto>> signup(@Valid @RequestBody SignupRequestDto signupRequestDto){
         return ResponseEntity.status(HttpStatus.CREATED).body(
                 ApiResponseDto.<SignupResponseDto>builder()
                         .success(true)
@@ -33,7 +34,7 @@ public class CustomerController {
         );
     }
     @PostMapping("/login")
-    public ResponseEntity<ApiResponseDto<LoginResponseDto>> login(@RequestBody LoginRequestDto loginRequestDto){
+    public ResponseEntity<ApiResponseDto<LoginResponseDto>> login(@Valid @RequestBody LoginRequestDto loginRequestDto){
         return ResponseEntity.ok().body(
                 ApiResponseDto.<LoginResponseDto>builder()
                         .success(true)
